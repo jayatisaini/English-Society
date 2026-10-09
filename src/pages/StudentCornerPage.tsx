@@ -5,6 +5,7 @@ import { useAdmin } from '@/context/AdminContext';
 import { useToast } from '@/context/ToastContext';
 
 const TYPES = ['Book Review', 'Poem Review', 'Short Story', 'Poetry', 'Essay'] as const;
+const LOCAL_STORAGE_KEY = 'society-student-submissions';
 type SubmissionType = typeof TYPES[number];
 
 const TYPE_COLORS: Record<SubmissionType, string> = {
@@ -58,6 +59,18 @@ export default function StudentCornerPage() {
 
   async function fetchSubmissions() {
     setLoading(true);
+
+    if (!supabase) {
+      try {
+        const stored = window.localStorage.getItem(LOCAL_STORAGE_KEY);
+        setSubmissions(stored ? JSON.parse(stored) as StudentSubmission[] : []);
+      } catch {
+        setSubmissions([]);
+      }
+      setLoading(false);
+      return;
+    }
+
     const { data, error } = await supabase
       .from('student_submissions')
       .select('*')
@@ -71,16 +84,31 @@ export default function StudentCornerPage() {
     if (!form.title.trim() || !form.content.trim() || !form.student_name.trim()) return;
     setSubmitting(true);
 
-    const { data, error } = await supabase
-      .from('student_submissions')
-      .insert([form])
-      .select()
-      .single();
+    let data: StudentSubmission | null = null;
+    let error: Error | null = null;
+
+    if (supabase) {
+      const response = await supabase
+        .from('student_submissions')
+        .insert([form])
+        .select()
+        .single();
+      data = response.data as StudentSubmission | null;
+      error = response.error ? new Error(response.error.message) : null;
+    } else {
+      data = {
+        ...form,
+        id: typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : `${Date.now()}`,
+        created_at: new Date().toISOString(),
+      };
+    }
 
     if (error || !data) {
       show('Could not publish your work. Please try again.', 'error');
     } else {
-      setSubmissions(prev => [data as StudentSubmission, ...prev]);
+      const nextSubmissions = [data, ...submissions];
+      setSubmissions(nextSubmissions);
+      if (!supabase) window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(nextSubmissions));
       setForm({ student_name: '', class_section: '', submission_type: 'Book Review', title: '', content: '' });
       show('Your work has been published to the Student Corner!', 'success');
     }
@@ -88,6 +116,13 @@ export default function StudentCornerPage() {
   }
 
   async function handleDelete(id: string) {
+    if (!supabase) {
+      const nextSubmissions = submissions.filter(s => s.id !== id);
+      setSubmissions(nextSubmissions);
+      window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(nextSubmissions));
+      return;
+    }
+
     const { error } = await supabase.from('student_submissions').delete().eq('id', id);
     if (error) {
       show('Could not delete this submission.', 'error');
