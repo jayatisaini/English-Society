@@ -24,7 +24,7 @@ export const FOUNDERS: Founder[] = [
 export const DEPARTMENT_HEADS: DepartmentRole[] = [
   { department: 'Writing', name: 'Divyanshi Shekhawat' },
   { department: 'Speaking', name: 'Ojaswi Goel' },
-  { department: 'Reading', name: 'Shaurya Aggarwal' },
+  { department: 'Reading', name: 'Shaurya Agarwal' },
 ];
 
 export const DEPARTMENT_VICE_HEADS: DepartmentRole[] = [
@@ -56,7 +56,7 @@ export const MEMBERS: Member[] = [
   { name: 'Navya', classSection: 'Class XI-G' },
   { name: 'Grisha Narang', classSection: 'Class XI-G' },
   { name: 'Manvi', classSection: 'Class XI-H' },
-  { name: 'Vidita Saini', classSection: 'Class XI-H' },
+  { name: 'Viditaa Saini', classSection: 'Class XI-H' },
   { name: 'Khushika Sharma', classSection: 'Class XI-J' },
   { name: 'Bhrigu Radhey', classSection: 'Class XI-J' },
   { name: 'Niyati', classSection: 'Class XI-J' },
