@@ -9,11 +9,11 @@ const LOCAL_STORAGE_KEY = 'society-student-submissions';
 type SubmissionType = typeof TYPES[number];
 
 const TYPE_COLORS: Record<SubmissionType, string> = {
-  'Book Review':  'bg-blue-50 text-blue-700 border-blue-200',
-  'Poem Review':  'bg-violet-50 text-violet-700 border-violet-200',
-  'Short Story':  'bg-amber-50 text-amber-700 border-amber-200',
-  'Poetry':       'bg-emerald-50 text-emerald-700 border-emerald-200',
-  'Essay':        'bg-rose-50 text-rose-700 border-rose-200',
+  'Book Review':  'bg-burgundy-950/5 text-burgundy-950 border-burgundy-950/20',
+  'Poem Review':  'bg-gold-500/10 text-gold-700 border-gold-500/30',
+  'Short Story':  'bg-gold-500/10 text-gold-700 border-gold-500/30',
+  'Poetry':       'bg-burgundy-950/5 text-burgundy-950 border-burgundy-950/20',
+  'Essay':        'bg-charcoal/5 text-charcoal border-charcoal/20',
 };
 
 const TYPE_ICONS: Record<SubmissionType, React.ElementType> = {

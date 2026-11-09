@@ -15,8 +15,8 @@
 }
 
 @layer utilities {
-  .font-display  { font-family: 'Cinzel Decorative', serif; }
-  .font-serif-lit { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-display  { font-family: 'Cinzel', serif; }
+  .font-serif-lit { font-family: 'Playfair Display', Georgia, serif; }
 
   .hero-grid-bg {
     background-color: #500B14;

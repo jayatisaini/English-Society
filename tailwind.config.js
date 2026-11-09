@@ -35,8 +35,8 @@ export default {
         charcoal: '#2C2C2C',
       },
       fontFamily: {
-        display: ['"Cinzel Decorative"', 'serif'],
-        serif:   ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        display: ['Cinzel', 'serif'],
+        serif:   ['"Playfair Display"', 'Georgia', 'serif'],
         sans:    ['Inter', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {

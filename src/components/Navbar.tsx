@@ -37,7 +37,7 @@ export default function Navbar({ currentPage, onNavigate, onAdminClick }: Props)
               The Society of Letters &amp; Eloquence
             </p>
             <p className="font-sans text-[10px] text-gold-500/80 tracking-wide mt-0.5">
-              OP Jindal Modern School, Hisar
+              OP Jindal Modern School &middot; Session 2026-27
             </p>
           </div>
         </button>

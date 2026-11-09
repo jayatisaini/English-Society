@@ -26,6 +26,9 @@ export default function Footer({ onAdminClick }: Props) {
           <p className="text-xs font-sans text-gold-500/70">
             OP Jindal Modern School, Hisar &mdash; English Literary Society
           </p>
+          <p className="text-xs font-sans text-gold-500/70">
+            Session 2026-27
+          </p>
           <p className="text-xs font-sans text-white/40 italic">
             A Student-Led Initiative under the Guidance of the English Department.
           </p>
